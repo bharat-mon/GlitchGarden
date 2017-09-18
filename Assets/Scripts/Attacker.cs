@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Attacker : MonoBehaviour {
 
-	[Range (-1f, 1.5f)] public float moveSpeed;
+	[Range (-1f, 1.5f)] public float currentSpeed;
 
 	// Use this for initialization
 	void Start () {
@@ -13,10 +13,18 @@ public class Attacker : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		this.transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+		this.transform.Translate(Vector3.left * currentSpeed * Time.deltaTime);
 	}
 	
 	void OnTriggerEnter2D () {
 		Debug.Log(name + "enter trigger");
+	}
+	
+	public void SetMoveSpeed (float speed) {
+		currentSpeed = speed;
+	}
+	
+	public void StrikeCurrentTarget (float damage) {
+		Debug.Log(name + " dealt " + damage + " damage");
 	}
 }
