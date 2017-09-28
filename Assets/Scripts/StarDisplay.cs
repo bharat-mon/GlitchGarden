@@ -6,7 +6,8 @@ using System.Collections;
 public class StarDisplay : MonoBehaviour {
 
 	private Text myText;
-	private int starCount = 0;
+	private int starCount = 100;
+	public enum Status {SUCCESS, FAILURE};
 
 	// Use this for initialization
 	void Start () {
@@ -24,9 +25,13 @@ public class StarDisplay : MonoBehaviour {
 		UpdateDisplay();
 	}
 	
-	public void UseStars (int amount) {
-		starCount -= amount;
-		UpdateDisplay();
+	public Status UseStars (int amount) {
+		if (starCount >= amount) {
+			starCount -= amount;
+			UpdateDisplay();
+			return Status.SUCCESS;
+		}
+		return Status.FAILURE;
 	}
 	
 	private void UpdateDisplay () {
