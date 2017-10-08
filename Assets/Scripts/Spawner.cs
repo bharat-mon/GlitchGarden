@@ -34,12 +34,8 @@ public class Spawner : MonoBehaviour {
 		
 		if (Time.deltaTime > meanSpawnDelay) {
 			Debug.LogWarning("Spawn rate capped by frame rate");
-		} else if (Random.value < spawnTreshold) {
-			return true;
-		} else {
-			return false;
 		}
 		
-		return true;
+		return (Random.value < spawnTreshold);
 	}
 }
